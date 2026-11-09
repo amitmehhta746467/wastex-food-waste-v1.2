@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+{% block title %}Pickup Booked — Wastex{% endblock %}
+{% block content %}
+<section><div class="wrap" style="text-align:center;max-width:720px">
+  <div style="font-size:4rem">✅</div>
+  <h2>Pickup requested — thank you, {{ pickup.name }}!</h2>
+  <p class="lead" style="margin:0 auto 1.4rem">Your booking reference is <b style="color:var(--dark)">{{ pickup.reference }}</b>.
+  We will collect <b>{{ pickup.quantity_kg }} kg</b> of {{ pickup.get_waste_type_display|lower }} on
+  <b>{{ pickup.preferred_date|date:"d M Y" }}</b> ({{ pickup.time_slot }}) from your address.
+  A confirmation call to {{ pickup.phone }} is on its way.</p>
+  <a class="btn" href="{% url 'listings' %}">Browse Live Food Listings</a>
+  <a class="btn outline" href="{% url 'home' %}">Back to Home</a>
+</div></section>
+{% endblock %}

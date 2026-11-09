@@ -1,0 +1,40 @@
+{% load static %}
+<!-- Shared standard sections: process, quality standards, coverage, CTA.
+     Included on inner pages so every page carries full, useful length. -->
+
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● How It Works</span><h2>From leftover to lifeline, in 4 steps</h2>
+  <div class="steps">
+    <div class="step reveal"><span class="n">1</span><h3>📋 Report surplus</h3><p>Book a pickup or list your leftover food in under a minute — tell us what, how much and where.</p></div>
+    <div class="step reveal"><span class="n">2</span><h3>🚛 Fast pickup</h3><p>Our crew arrives in your chosen slot with sealed food-grade containers, inside the safe food window.</p></div>
+    <div class="step reveal"><span class="n">3</span><h3>🔍 Check &amp; segregate</h3><p>Food is temperature-checked and sorted: edible → donation, inedible → compost or biogas.</p></div>
+    <div class="step reveal"><span class="n">4</span><h3>📊 Get your report</h3><p>You receive a receipt with kg diverted, meals served and CO₂ saved — ready to share.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● Our Standards</span><h2>The Wastex quality standard, on every pickup</h2>
+  <div class="why-grid">
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🌡️</span><h3>Temperature checked</h3><p>Every cooked-food load is checked at collection. Anything outside the safe range is composted, never donated.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🔒</span><h3>Sealed &amp; labelled</h3><p>Food-grade sealed containers, labelled with dish, quantity and cooking time — a clean chain of custody.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">📍</span><h3>GPS-tracked vehicles</h3><p>Every vehicle is tracked from your door to the NGO, compost unit or biogas plant it delivers to.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">✅</span><h3>Verified partners</h3><p>NGOs, kitchens, composters and recyclers on Wastex are verified before they receive a single load.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">📄</span><h3>Full paperwork</h3><p>Donation receipts, destruction certificates and compliance documents generated for every collection.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">📊</span><h3>Measured impact</h3><p>Monthly reports show kg diverted, meals served and CO₂ saved — measured, not estimated.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● Coverage</span><h2>Areas we serve</h2>
+  <p class="lead" style="margin-bottom:1.2rem">Daily routes across these neighbourhoods, with new areas added every month. Outside the list? Book anyway — event and bulk pickups travel further.</p>
+  <div>
+    <span class="chip">Green Valley</span><span class="chip">Riverside District</span><span class="chip">Old Town</span>
+    <span class="chip">North Campus</span><span class="chip">Market Street</span><span class="chip">Lakeside</span>
+    <span class="chip">Eco District</span><span class="chip">Harbour Side</span><span class="chip">University Quarter</span>
+    <span class="chip">Tech Park</span><span class="chip">Garden Colony</span><span class="chip">Central Market</span>
+  </div>
+  <div class="cta-band reveal" style="margin-top:2.6rem">
+    <h2>Have leftover food today?<br>We will collect it — free.</h2>
+    <a class="btn light" href="{% url 'book_pickup' %}">Book a Pickup →</a>
+  </div>
+</div></section>

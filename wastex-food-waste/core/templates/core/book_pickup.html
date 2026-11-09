@@ -1,0 +1,13 @@
+{% extends "core/base.html" %}
+{% block title %}Book a Pickup — Wastex{% include "core/_standard.html" %}
+{% endblock %}
+{% block content %}
+<div class="page-head"><div class="wrap"><h1>Book a Pickup</h1><p>Free for donation-ready leftover food · crew arrives in your chosen slot</p></div></div>
+<section><div class="wrap">
+  <form class="form-card" method="post">{% csrf_token %}
+    <div class="form-grid">{% include "core/_form.html" %}</div>
+    <button class="btn" type="submit" style="margin-top:1.4rem">Request Pickup →</button>
+    <p class="helptext" style="margin-top:.8rem">We confirm by phone within 30 minutes during working hours (7 AM – 9 PM).</p>
+  </form>
+</div></section>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}News — Wastex
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● Quick Tips</span><h2>6 food waste tips that actually work</h2>
+  <div class="why-grid">
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🏷️</span><h3>Label everything</h3><p>Dish name + date on every container. Most waste is just forgotten food.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🔁</span><h3>First in, first out</h3><p>New stock goes behind old stock — the simplest rule in professional kitchens.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">❄️</span><h3>Freeze with a plan</h3><p>Freeze surplus in serving-size portions, and put a "use this week" date on it.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">📋</span><h3>Track for one week</h3><p>Weigh what you bin for 7 days. The top 3 items are where your savings hide.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🍛</span><h3>Plan a "use-it-up" special</h3><p>One weekly special built from surplus turns would-be waste into margin.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🤝</span><h3>Donate the rest</h3><p>Whatever is still good, list it on Wastex — collection is free and documented.</p></div>
+  </div>
+</div></section>
+
+{% include "core/_standard.html" %}
+{% endblock %}
+{% block content %}
+<div class="page-head"><div class="wrap"><h1>News &amp; Tips</h1><p>Home · News — food waste guides, safety and stories</p></div></div>
+<section><div class="wrap">
+  {% if posts %}{% with p=posts.0 %}
+  <article class="featured-post reveal">
+    <img src="{% static 'core/img/' %}{{ p.image }}" alt="{{ p.title }}">
+    <div class="body"><span class="meta" style="color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.82rem">⭐ Featured · {{ p.category }} · {{ p.published_on|date:"d M Y" }}</span>
+      <h2 style="margin:0">{{ p.title }}</h2><p>{{ p.excerpt }}</p>
+      <a class="btn" href="{% url 'blog_detail' p.slug %}" style="align-self:flex-start">Read the Article →</a></div>
+  </article>
+  {% endwith %}{% endif %}
+  <div style="margin-bottom:1.6rem"><span class="chip">All topics</span>{% for p in posts %}<span class="chip">{{ p.category }}</span>{% endfor %}</div>
+
+  <div class="cards" style="margin-top:0">
+    {% for p in posts %}{% include "core/_post_card.html" %}{% endfor %}
+  </div>
+</div></section>
+{% endblock %}

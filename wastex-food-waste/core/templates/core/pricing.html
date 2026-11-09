@@ -1,0 +1,20 @@
+{% extends "core/base.html" %}
+{% block title %}Pricing — Wastex{% include "core/_standard.html" %}
+{% endblock %}
+{% block content %}
+<div class="page-head"><div class="wrap"><h1>Pricing</h1><p>Donation pickups are always free — paid plans cover scheduled waste services</p></div></div>
+<section><div class="wrap">
+  <div class="price-grid" style="margin-top:0">
+    <div class="price-card reveal card-3d" data-tilt><h3>Donation</h3><div class="amt">Free</div><p>For edible surplus food</p>
+      <ul><li>✓ Same-day pickup</li><li>✓ NGO matching</li><li>✓ Donation receipt</li><li>✓ Impact summary</li></ul>
+      <a class="btn outline" href="{% url 'add_listing' %}">Donate Food</a></div>
+    <div class="price-card hot reveal card-3d" data-tilt><h3>Outlet Plan</h3><div class="amt">₹1,499<span style="font-size:1rem">/mo</span></div><p>For restaurants &amp; cafes</p>
+      <ul><li>✓ Daily wet-waste collection</li><li>✓ Composting included</li><li>✓ Sealed bins supplied</li><li>✓ Monthly impact report</li><li>✓ Priority pickup slots</li></ul>
+      <a class="btn" href="{% url 'book_pickup' %}">Book Pickup</a></div>
+    <div class="price-card reveal card-3d" data-tilt><h3>Enterprise</h3><div class="amt">Custom</div><p>For hotels, chains &amp; events</p>
+      <ul><li>✓ Multi-site collection</li><li>✓ Biogas routing</li><li>✓ Compliance paperwork</li><li>✓ Dedicated manager</li></ul>
+      <a class="btn outline" href="{% url 'contact' %}">Talk to Us</a></div>
+  </div>
+  <p class="lead" style="margin:2rem auto 0;text-align:center">One-time eco disposal pickups start at ₹899. Event bulk removal is quoted per event.</p>
+</div></section>
+{% endblock %}

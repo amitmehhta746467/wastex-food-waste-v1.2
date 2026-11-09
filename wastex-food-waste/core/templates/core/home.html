@@ -1,0 +1,236 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- HERO — Homepage 1 (Wastex reference) -->
+<section class="hero">
+  <img class="bg" src="{% static 'core/img/hero-waste.webp' %}" alt="Wastex crew sorting leftover food waste">
+  <div class="shade"></div>
+  <div class="wrap">
+    <span class="pill on-dark">♻️ Leftover Food Waste Management</span>
+    <h1>Efficient <em>Waste</em> Management</h1>
+    <p>Efficient waste management plays a vital role in creating cleaner, safer and more sustainable communities. We collect leftover food while it is still fresh — and send it to people, compost and clean energy, not landfill.</p>
+    <a class="btn" href="{% url 'book_pickup' %}">Book a Free Pickup →</a>
+    <a class="btn light" href="{% url 'add_listing' %}" style="margin-left:.6rem">Donate Leftover Food</a>
+  </div>
+  <div class="hero-card"><b>🚛 The Reliable Waste Disposal Service</b>
+    <p>Same-day collection, sealed food-grade containers and a donation receipt for every pickup.</p></div>
+</section>
+
+<!-- 4 FEATURE CARDS -->
+<section class="features"><div class="wrap"><div class="feature-grid">
+  <article class="feature-card reveal card-3d" data-tilt><div class="thumb"><img src="{% static 'core/img/green-bin.webp' %}" alt="Eco disposal"></div>
+    <div class="body"><h3>Eco disposal</h3><span class="ic">🌿</span></div></article>
+  <article class="feature-card reveal card-3d" data-tilt><div class="thumb"><img src="{% static 'core/img/community-impact.webp' %}" alt="Waste reuse"></div>
+    <div class="body"><h3>Waste Reuse</h3><span class="ic">🔄</span></div></article>
+  <article class="feature-card reveal card-3d" data-tilt><div class="thumb"><img src="{% static 'core/img/about-food-rescue.webp' %}" alt="Safe handling"></div>
+    <div class="body"><h3>Safe handling</h3><span class="ic">🧤</span></div></article>
+  <article class="feature-card reveal card-3d" data-tilt><div class="thumb"><img src="{% static 'core/img/hero-waste.webp' %}" alt="Fast pickup"></div>
+    <div class="body"><h3>Fast pickup</h3><span class="ic">🚛</span></div></article>
+</div></div></section>
+
+<!-- ABOUT -->
+<section><div class="wrap about-grid">
+  <div class="about-media reveal">
+    <img class="main" src="{% static 'core/img/about-food-rescue.webp' %}" alt="Rescued leftover food">
+    <img class="small" src="{% static 'core/img/hero-waste.webp' %}" alt="Wastex collection in action">
+    <div class="badge25"><span><b>25</b>Years of Experience</span></div>
+  </div>
+  <div class="reveal">
+    <span class="pill">● About Us</span>
+    <h2>Turning responsible waste disposal into a better future for our planet.</h2>
+    <p class="lead">We work closely with homes, businesses and communities to provide reliable waste solutions that support cleaner surroundings and promote eco-friendly habits. Our team is committed to using responsible methods — donation first, then composting and biogas.</p>
+    <div class="about-point"><span class="ic">♻️</span><div>
+      <b>Committed to safe and sustainable waste disposal</b>
+      <p style="color:var(--muted);font-size:.94rem">Every load is segregated, temperature-checked and tracked from your door to its destination.</p></div></div>
+    <div class="about-cta">
+      <a class="btn" href="{% url 'about' %}">More About Us</a>
+      <div class="need-help">Need Help?<b>✉️ {{ site_email }}</b></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- STATS -->
+<div class="stats"><div class="wrap grid">
+  <div><div class="num" data-count="{{ stats.kg_diverted }}">0</div><p>kg of food waste diverted from landfill</p></div>
+  <div><div class="num" data-count="{{ stats.meals_served }}">0</div><p>meals served through food donation</p></div>
+  <div><div class="num" data-count="{{ stats.partners }}">0</div><p>restaurants, hotels &amp; NGOs partnered</p></div>
+  <div><div class="num" data-count="{{ stats.cities }}">0</div><p>cities served, and growing</p></div>
+</div></div>
+
+<!-- DARK SERVICES -->
+<section class="dark-sec"><div class="wrap">
+  <div style="text-align:center"><span class="pill on-dark">● Services</span>
+    <h2>Efficient waste removal services</h2>
+    <p class="lead" style="margin:0 auto">For leftover food, kitchen waste and everything around it.</p></div>
+  <div class="service-layout">
+    <div class="service-col">
+      {% for s in featured|slice:":2" %}
+      <a class="service-item reveal" href="{% url 'service_detail' s.slug %}"><span class="ic">{{ s.icon }}</span>
+        <div><h3>{{ s.title }}</h3><p>{{ s.short|truncatechars:110 }}</p></div></a>
+      {% endfor %}
+    </div>
+    <img class="bin-img reveal" src="{% static 'core/img/green-bin.webp' %}" alt="Green recycling bin with leftover food waste">
+    <div class="service-col">
+      {% for s in featured|slice:"2:4" %}
+      <a class="service-item reveal" href="{% url 'service_detail' s.slug %}"><span class="ic">{{ s.icon }}</span>
+        <div><h3>{{ s.title }}</h3><p>{{ s.short|truncatechars:110 }}</p></div></a>
+      {% endfor %}
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:2.2rem"><a class="btn" href="{% url 'services' %}">View All {{ services|length }} Services →</a></div>
+</div></section>
+
+<!-- HOW IT WORKS -->
+<section><div class="wrap">
+  <span class="pill">● How It Works</span><h2>From leftover to lifeline, in 4 steps</h2>
+  <div class="steps">
+    <div class="step reveal"><span class="n">1</span><h3>📋 Report surplus</h3><p>Book a pickup or list your leftover food in under a minute — tell us what, how much and where.</p></div>
+    <div class="step reveal"><span class="n">2</span><h3>🚛 Fast pickup</h3><p>Our crew arrives in your chosen slot with sealed food-grade containers, within the safe food window.</p></div>
+    <div class="step reveal"><span class="n">3</span><h3>🔍 Check &amp; segregate</h3><p>Food is temperature-checked and sorted: edible → donation, inedible → compost or biogas.</p></div>
+    <div class="step reveal"><span class="n">4</span><h3>📊 Get your report</h3><p>You receive a receipt with kg diverted, meals served and CO₂ saved — ready to share.</p></div>
+  </div>
+</div></section>
+
+<!-- LIVE LISTINGS -->
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● Live Now</span><h2>Leftover food available near you</h2>
+  <p class="lead">Real listings from donors right now. NGOs, shelters and community kitchens can claim a listing and collect it before the pickup-by time.</p>
+  <div class="cards">
+    {% for l in listings %}
+    <article class="card listing-card reveal"><div class="body">
+      <span class="meta">{{ l.get_org_type_display }} · {{ l.location }}</span>
+      <h3>{{ l.food_type }}</h3>
+      <p>🏢 {{ l.donor_name }}<br>⚖️ {{ l.quantity_kg }} kg · 🍽️ ~{{ l.servings }} servings<br>⏰ Collect by {{ l.pickup_by|date:"d M, g:i A" }}</p>
+      <span class="tag">Available</span>
+    </div></article>
+    {% empty %}<p class="lead">No live listings right now — <a href="{% url 'add_listing' %}"><b>be the first to donate today</b></a>.</p>{% endfor %}
+  </div>
+  <div style="margin-top:1.6rem"><a class="btn outline" href="{% url 'listings' %}">See All Live Listings →</a></div>
+</div></section>
+
+<!-- CALCULATOR -->
+<section style="padding-top:0"><div class="wrap">
+  <div class="calc reveal">
+    <div><span class="pill">● Impact Calculator</span><h2>What could your leftovers do?</h2>
+      <p class="lead">Drag the slider to your typical daily leftover quantity.</p>
+      <label for="calc-kg" style="font-weight:800;font-size:1.2rem">Daily leftover food: <span id="calc-kg-val">20 kg</span></label>
+      <input type="range" id="calc-kg" min="1" max="200" value="20"></div>
+    <div class="out">
+      <div><b id="calc-meals">50</b><span>meals it could serve</span></div>
+      <div><b id="calc-co2">50 kg</b><span>CO₂e saved vs landfill</span></div>
+      <div><b id="calc-compost">6 kg</b><span>compost if inedible</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- PROJECTS -->
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● Projects</span><h2>Recent food rescue projects</h2>
+  <div class="cards">
+    {% for p in projects %}{% include "core/_project_card.html" %}{% endfor %}
+  </div>
+</div></section>
+
+
+<!-- WHY CHOOSE US -->
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● Why Wastex</span><h2>Why outlets and NGOs choose Wastex</h2>
+  <div class="why-grid">
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🥗</span><h3>Donation first, always</h3><p>Edible food goes to people before anything else. Composting and biogas handle only what genuinely cannot be eaten.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">⚡</span><h3>2–4 hour response</h3><p>Surplus food has a short safe window, so our routes are built around service times — lunch, dinner, bakery close.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">💸</span><h3>Free for donors</h3><p>Donation pickups cost nothing. Our compost and recycling partners fund the runs, so doing good stays free.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🧤</span><h3>Trained, uniformed crew</h3><p>Handlers trained in food-safe practice, with sealed containers and a documented chain of custody on every load.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">📊</span><h3>Proof, not promises</h3><p>Weighed loads, delivery photos and monthly impact reports — your CSR numbers are auditable, not estimated.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">📄</span><h3>Compliance handled</h3><p>Donation receipts, disposal certificates and waste paperwork generated automatically for your records.</p></div>
+  </div>
+</div></section>
+
+<!-- 2030 COMMITMENT + COVERAGE (dark) -->
+<section class="dark-sec" style="padding-top:4.5rem"><div class="wrap">
+  <div class="about-grid" style="align-items:start">
+    <div class="reveal"><span class="pill on-dark">● Our 2030 Commitment</span>
+      <h2>Zero edible food to landfill by 2030</h2>
+      <p class="lead">Three public goals, tracked on every pickup and reported every month — this is where they stand today.</p>
+      <p style="margin-top:1.2rem"><b>Donation-first routing on every route</b> — 90%</p><div class="progress"><i style="width:90%"></i></div>
+      <p><b>Partner outlets at zero food waste to landfill</b> — 72%</p><div class="progress"><i style="width:72%"></i></div>
+      <p><b>500 verified NGO &amp; kitchen partners</b> — 64%</p><div class="progress"><i style="width:64%"></i></div>
+    </div>
+    <div class="reveal"><span class="pill on-dark">● Coverage</span>
+      <h2>Areas we serve</h2>
+      <p class="lead" style="margin-bottom:1.2rem">Daily routes across these neighbourhoods, with new areas added every month.</p>
+      <div>
+        <span class="chip">Green Valley</span><span class="chip">Riverside District</span><span class="chip">Old Town</span>
+        <span class="chip">North Campus</span><span class="chip">Market Street</span><span class="chip">Lakeside</span>
+        <span class="chip">Eco District</span><span class="chip">Harbour Side</span><span class="chip">University Quarter</span>
+        <span class="chip">Tech Park</span><span class="chip">Garden Colony</span><span class="chip">Central Market</span>
+      </div>
+      <p class="lead" style="margin-top:.6rem">Outside the list? Book anyway — event and bulk pickups travel further.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- TEAM -->
+<section><div class="wrap">
+  <span class="pill">● Our Team</span><h2>The people behind the pickups</h2>
+  <div class="cards team-grid">
+    <article class="card team-card reveal card-3d" data-tilt><div class="thumb"><img src="{% static 'core/img/about-food-rescue.webp' %}" alt="Arjun Mehta"></div>
+      <div class="body"><h3>Arjun Mehta</h3><p>Founder &amp; CEO — 25 years in waste management, started Wastex to fix the leftover-food gap.</p></div></article>
+    <article class="card team-card reveal card-3d" data-tilt><div class="thumb"><img src="{% static 'core/img/community-impact.webp' %}" alt="Sara Thomas"></div>
+      <div class="body"><h3>Sara Thomas</h3><p>Head of Operations — runs the daily routes, slots and the 2–4 hour response promise.</p></div></article>
+    <article class="card team-card reveal card-3d" data-tilt><div class="thumb"><img src="{% static 'core/img/hero-waste.webp' %}" alt="Vikram Rao"></div>
+      <div class="body"><h3>Vikram Rao</h3><p>Food Safety Lead — owns temperature checks, container standards and crew training.</p></div></article>
+    <article class="card team-card reveal card-3d" data-tilt><div class="thumb"><img src="{% static 'core/img/green-bin.webp' %}" alt="Lena George"></div>
+      <div class="body"><h3>Lena George</h3><p>Partnerships — verifies every NGO, kitchen, composter and biogas partner on the network.</p></div></article>
+  </div>
+</div></section>
+
+<!-- GALLERY -->
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● Gallery</span><h2>Wastex in action</h2>
+  <div class="gallery">
+    <figure class="reveal"><img src="{% static 'core/img/hero-waste.webp' %}" alt="Sorting leftover food waste"></figure>
+    <figure class="reveal"><img src="{% static 'core/img/community-impact.webp' %}" alt="Community meal distribution"></figure>
+    <figure class="reveal"><img src="{% static 'core/img/about-food-rescue.webp' %}" alt="Rescued food crates"></figure>
+    <figure class="reveal"><img src="{% static 'core/img/green-bin.webp' %}" alt="Green recycling bin"></figure>
+  </div>
+</div></section>
+
+<!-- TESTIMONIALS -->
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● Testimonials</span><h2>What our partners say</h2>
+  <div class="testi-track">
+    {% for t in testimonials %}
+    <article class="testi reveal"><div class="stars">{% for i in "12345" %}{% if forloop.counter <= t.rating %}★{% else %}☆{% endif %}{% endfor %}</div>
+      <p>“{{ t.quote }}”</p><b>{{ t.name }}</b><small>{{ t.role }}</small></article>
+    {% endfor %}
+  </div>
+</div></section>
+
+
+<!-- FAQ TEASER -->
+<section style="padding-top:0"><div class="wrap" style="max-width:860px">
+  <span class="pill">● FAQ</span><h2>Quick questions</h2>
+  <div style="margin-top:1.4rem">
+    <div class="faq-item"><button>Is pickup really free for leftover food? <span>＋</span></button>
+      <div class="ans">Yes. Donation-ready surplus food is collected free — our composting and recycling partners fund the donation runs.</div></div>
+    <div class="faq-item"><button>How fast can you collect? <span>＋</span></button>
+      <div class="ans">Within 2–4 hours of booking in served areas, always inside the safe food window.</div></div>
+    <div class="faq-item"><button>What happens to food that can't be eaten? <span>＋</span></button>
+      <div class="ans">Raw scraps go to composting, cooked and oily waste to biogas, and only contaminated waste to licensed eco disposal.</div></div>
+  </div>
+  <a class="btn outline" href="{% url 'faq' %}">See All FAQs →</a>
+</div></section>
+
+<!-- NEWS -->
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● News</span><h2>From the Wastex blog</h2>
+  <div class="cards">
+    {% for p in posts %}{% include "core/_post_card.html" %}{% endfor %}
+  </div>
+  <div class="cta-band reveal" style="margin-top:3rem">
+    <h2>Have leftover food today?<br>We will collect it — free.</h2>
+    <a class="btn light" href="{% url 'book_pickup' %}">Book a Pickup →</a>
+  </div>
+</div></section>
+{% endblock %}

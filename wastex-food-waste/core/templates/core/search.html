@@ -1,0 +1,21 @@
+{% extends "core/base.html" %}
+{% block title %}Search — Wastex{% endblock %}
+{% block content %}
+<div class="page-head"><div class="wrap"><h1>Search</h1><p>{% if q %}Results for “{{ q }}”{% else %}Search services, projects, news and live food listings{% endif %}</p></div></div>
+<section><div class="wrap">
+  <form method="get" style="display:flex;gap:.6rem;max-width:560px;margin-bottom:2rem">
+    <input class="input" type="search" name="q" value="{{ q }}" placeholder="Try: compost, donation, biryani…">
+    <button class="btn" type="submit">Search</button></form>
+  {% if q %}
+    <h2 style="margin-bottom:1rem">Services</h2>
+    <div class="cards" style="margin-top:0">{% for s in services %}{% include "core/_service_card.html" %}{% empty %}<p class="lead">No services matched.</p>{% endfor %}</div>
+    <h2 style="margin:2.4rem 0 1rem">Projects</h2>
+    <div class="cards" style="margin-top:0">{% for p in projects %}{% include "core/_project_card.html" %}{% empty %}<p class="lead">No projects matched.</p>{% endfor %}</div>
+    <h2 style="margin:2.4rem 0 1rem">News</h2>
+    <div class="cards" style="margin-top:0">{% for p in posts %}{% include "core/_post_card.html" %}{% empty %}<p class="lead">No news matched.</p>{% endfor %}</div>
+    <h2 style="margin:2.4rem 0 1rem">Live food listings</h2>
+    {% for l in listings %}<p>🍲 <b>{{ l.food_type }}</b> — {{ l.quantity_kg }} kg at {{ l.location }} ({{ l.get_status_display }}) · <a class="more" href="{% url 'listings' %}"><b>View</b></a></p>
+    {% empty %}<p class="lead">No listings matched.</p>{% endfor %}
+  {% endif %}
+</div></section>
+{% endblock %}

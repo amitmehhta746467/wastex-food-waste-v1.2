@@ -1,0 +1,10 @@
+{% load static %}
+<article class="card reveal card-3d" data-tilt>
+  <div class="thumb"><img src="{% static 'core/img/' %}{{ s.image }}" alt="{{ s.title }}"></div>
+  <div class="body">
+    <span class="meta">{{ s.icon }} {{ s.price_note }}</span>
+    <h3>{{ s.title }}</h3>
+    <p>{{ s.short }}</p>
+    <a class="more" href="{% url 'service_detail' s.slug %}">Learn More →</a>
+  </div>
+</article>

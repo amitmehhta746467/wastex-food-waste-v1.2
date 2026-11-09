@@ -1,0 +1,13 @@
+{% extends "core/base.html" %}
+{% block title %}My Pickups — Wastex{% endblock %}
+{% block content %}
+<div class="page-head"><div class="wrap"><h1>My Pickups</h1><p>Pickup requests made with your account</p></div></div>
+<section><div class="wrap">
+  {% if pickups %}
+  <table><tr><th>Reference</th><th>Type</th><th>Quantity</th><th>Date</th><th>Slot</th><th>Status</th></tr>
+  {% for p in pickups %}<tr><td><b>{{ p.reference }}</b></td><td>{{ p.get_waste_type_display }}</td><td>{{ p.quantity_kg }} kg</td><td>{{ p.preferred_date|date:"d M Y" }}</td><td>{{ p.time_slot }}</td><td>{{ p.get_status_display }}</td></tr>{% endfor %}
+  </table>
+  {% else %}<p class="lead">No pickups yet under this account. Book one while logged in and it will appear here.</p>{% endif %}
+  <a class="btn" href="{% url 'book_pickup' %}" style="margin-top:1.4rem">Book a Pickup →</a>
+</div></section>
+{% endblock %}

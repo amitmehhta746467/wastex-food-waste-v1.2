@@ -1,0 +1,37 @@
+{% extends "core/base.html" %}
+{% block title %}Services — Wastex
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● Who We Serve</span><h2>Industries we serve</h2>
+  <div class="why-grid">
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🍽️</span><h3>Restaurants &amp; cafes</h3><p>Buffet and kitchen surplus collected nightly, plus daily wet-waste composting routes.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🏨</span><h3>Hotels &amp; banquets</h3><p>Multi-kitchen audits, event-night donation runs and zero-landfill programmes.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🎓</span><h3>Hostels &amp; campuses</h3><p>Mess surplus listed every evening and claimed by nearby shelters the same night.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🥐</span><h3>Bakeries &amp; grocery</h3><p>Day-end collection of unsold bakes and short-date packaged food for breakfast programmes.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🎉</span><h3>Events &amp; weddings</h3><p>On-site segregation crew, same-night clearance and donation routing for surplus.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">🏢</span><h3>Offices &amp; canteens</h3><p>Scheduled canteen waste collection with monthly impact reporting for your ESG file.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● Routing Guide</span><h2>Where each kind of waste goes</h2>
+  <p class="lead" style="margin-bottom:1.2rem">One pickup, four destinations — our crew segregates at collection, so you never have to guess.</p>
+  <div class="table-wrap reveal"><table>
+    <tr><th>Waste stream</th><th>Examples</th><th>Goes to</th><th>Cost</th><th>Turnaround</th></tr>
+    <tr><td><b>Edible surplus</b></td><td>Cooked meals, buffet food, packaged food in date</td><td>🤝 Donation — NGOs &amp; community kitchens</td><td>Free</td><td>2–4 hours</td></tr>
+    <tr><td><b>Raw scraps</b></td><td>Vegetable peels, prep waste, garden waste</td><td>🌱 Composting partners</td><td>From ₹1,499/mo</td><td>Daily route</td></tr>
+    <tr><td><b>Cooked &amp; oily waste</b></td><td>Fried food, gravies, used cooking oil</td><td>🔥 Biogas plants</td><td>By volume</td><td>Daily route</td></tr>
+    <tr><td><b>Dry recyclables</b></td><td>Glass, metal, plastic, cardboard</td><td>🔄 Authorised recyclers</td><td>From ₹999/mo</td><td>Weekly route</td></tr>
+    <tr><td><b>Expired / contaminated</b></td><td>Spoiled or unsafe food</td><td>♻️ Licensed eco disposal, with certificate</td><td>From ₹899/pickup</td><td>Same day</td></tr>
+  </table></div>
+</div></section>
+
+{% include "core/_standard.html" %}
+{% endblock %}
+{% block content %}
+<div class="page-head"><div class="wrap"><h1>Our Services</h1><p>Home · Services — efficient waste removal for food, kitchen and bulk waste</p></div></div>
+<section><div class="wrap">
+  <div class="cards" style="margin-top:0">
+    {% for s in services %}{% include "core/_service_card.html" %}{% endfor %}
+  </div>
+</div></section>
+{% endblock %}

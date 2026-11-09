@@ -1,0 +1,13 @@
+{% extends "core/base.html" %}
+{% block title %}Register — Wastex{% endblock %}
+{% block content %}
+<section><div class="wrap">
+  <form class="form-card" method="post" style="max-width:520px">{% csrf_token %}
+    <h2 style="text-align:center">Create your account</h2>
+    <p class="lead" style="text-align:center;margin:0 auto 1.4rem">Track your pickups and impact in one place.</p>
+    <div class="form-grid" style="grid-template-columns:1fr">{% include "core/_form.html" %}</div>
+    <button class="btn" type="submit" style="margin-top:1.3rem;width:100%;justify-content:center">Register →</button>
+    <p style="text-align:center;margin-top:1rem">Already registered? <a href="{% url 'login' %}" style="color:var(--green);font-weight:700">Login</a></p>
+  </form>
+</div></section>
+{% endblock %}

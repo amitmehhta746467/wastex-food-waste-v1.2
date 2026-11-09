@@ -1,0 +1,19 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}{{ project.title }} — Wastex{% endblock %}
+{% block content %}
+<div class="page-head"><div class="wrap"><h1>{{ project.title }}</h1><p>{{ project.category }} · {{ project.location }}{% if project.completed_on %} · {{ project.completed_on|date:"d M Y" }}{% endif %}</p></div></div>
+<section><div class="wrap about-grid">
+  <div class="reveal"><img src="{% static 'core/img/' %}{{ project.image }}" alt="{{ project.title }}" style="border-radius:24px;height:420px;width:100%;object-fit:cover"></div>
+  <div class="reveal">
+    <span class="pill">● Project</span><h2>{{ project.summary }}</h2>
+    <p class="lead">{{ project.description }}</p>
+    <div class="about-point"><span class="ic">⚖️</span><div><b>{{ project.kg_diverted }} kg diverted from landfill</b>
+      {% if project.meals_served %}<p style="color:var(--muted)">🍽️ {{ project.meals_served }} meals served through this project.</p>{% endif %}</div></div>
+    <a class="btn" href="{% url 'book_pickup' %}">Start a Similar Project →</a>
+  </div>
+</div></section>
+<section style="padding-top:0"><div class="wrap"><h2>More projects</h2>
+  <div class="cards">{% for p in others %}{% include "core/_project_card.html" %}{% endfor %}</div>
+</div></section>
+{% endblock %}

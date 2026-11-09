@@ -1,0 +1,64 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}About Us — Wastex{% endblock %}
+{% block content %}
+<div class="page-head"><div class="wrap"><h1>About Us</h1><p>Home · About Us</p></div></div>
+<section><div class="wrap about-grid">
+  <div class="about-media reveal">
+    <img class="main" src="{% static 'core/img/community-impact.webp' %}" alt="Wastex volunteers distributing rescued meals">
+    <img class="small" src="{% static 'core/img/green-bin.webp' %}" alt="Green recycling bin">
+    <div class="badge25"><span><b>25</b>Years of Experience</span></div>
+  </div>
+  <div class="reveal">
+    <span class="pill">● About Us</span>
+    <h2>Turning responsible waste disposal into a better future for our planet.</h2>
+    <p class="lead">Wastex started with one simple observation: at the end of every banquet, buffet and bakery day, good food went into bins while people nearby went hungry. We built the missing link — fast, safe, documented collection.</p>
+    <div class="about-point"><span class="ic">🥗</span><div><b>Donation first, always</b>
+      <p style="color:var(--muted);font-size:.94rem">Edible surplus goes to verified NGOs and community kitchens within its safe window.</p></div></div>
+    <div class="about-point"><span class="ic">🌱</span><div><b>Nothing wasted after that</b>
+      <p style="color:var(--muted);font-size:.94rem">Inedible waste becomes compost or biogas. Landfill is the last resort, never the plan.</p></div></div>
+    <div class="about-point"><span class="ic">📊</span><div><b>Measured, not promised</b>
+      <p style="color:var(--muted);font-size:.94rem">Every pickup is weighed and reported — {{ stats.kg_diverted }} kg diverted and {{ stats.meals_served }} meals served so far.</p></div></div>
+    <a class="btn" href="{% url 'book_pickup' %}">Work With Us →</a>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="cards" style="margin-top:0">
+    <article class="card reveal"><div class="body"><span class="meta">🎯 Our Mission</span><h3>No edible food wasted</h3>
+      <p>To make sure surplus food reaches people first — with collection fast enough, and handling safe enough, that donation becomes the easiest option for every kitchen.</p></div></article>
+    <article class="card reveal"><div class="body"><span class="meta">🔭 Our Vision</span><h3>Cities where landfill is the last resort</h3>
+      <p>A city where every restaurant, hotel, hostel and event treats leftover food as a resource — shared, composted or turned into energy, never simply thrown away.</p></div></article>
+    <article class="card reveal"><div class="body"><span class="meta">🤝 Our Promise</span><h3>Measured, documented, on time</h3>
+      <p>Every load weighed, every delivery photographed, every partner verified. If we say it was diverted, the paperwork proves it.</p></div></article>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap about-grid" style="align-items:start">
+  <div class="reveal"><span class="pill">● Our Journey</span><h2>25 years of experience, one food-first mission</h2>
+    <div class="timeline">
+      <div><b>2001</b><p>Our founding team starts in municipal waste collection and recycling.</p></div>
+      <div><b>2008</b><p>Composting partnerships begin — kitchen waste returns to farms as compost.</p></div>
+      <div><b>2016</b><p>Biogas routing added for cooked and oily waste from large kitchens.</p></div>
+      <div><b>2021</b><p>Wastex launches its food-first model: donation routing ahead of disposal.</p></div>
+      <div><b>2024</b><p>Live Food Listings open — donors list surplus, NGOs claim it the same day.</p></div>
+      <div><b>2026</b><p>480+ partners across 26 cities, with a public zero-landfill-by-2030 commitment.</p></div>
+    </div></div>
+  <div class="reveal"><span class="pill">● Our Values</span><h2>What we hold to</h2>
+    <div class="about-point"><span class="ic">🥗</span><div><b>People before landfill</b><p style="color:var(--muted);font-size:.94rem">Edible food is a meal, not waste. Everything else follows from that.</p></div></div>
+    <div class="about-point"><span class="ic">🛡️</span><div><b>Safety is non-negotiable</b><p style="color:var(--muted);font-size:.94rem">Temperature checks and sealed handling protect donors and recipients alike.</p></div></div>
+    <div class="about-point"><span class="ic">📊</span><div><b>Numbers you can audit</b><p style="color:var(--muted);font-size:.94rem">Weighed, photographed, reported. Impact claims come with receipts.</p></div></div>
+    <div class="about-point"><span class="ic">🌍</span><div><b>Local loops</b><p style="color:var(--muted);font-size:.94rem">Food, compost and partners stay in the neighbourhood wherever possible.</p></div></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● Testimonials</span><h2>What our partners say</h2>
+  <div class="testi-track">
+    {% for t in testimonials %}
+    <article class="testi reveal"><div class="stars">{% for i in "12345" %}{% if forloop.counter <= t.rating %}★{% else %}☆{% endif %}{% endfor %}</div>
+      <p>“{{ t.quote }}”</p><b>{{ t.name }}</b><small>{{ t.role }}</small></article>
+    {% endfor %}
+  </div>
+</div></section>
+{% endblock %}

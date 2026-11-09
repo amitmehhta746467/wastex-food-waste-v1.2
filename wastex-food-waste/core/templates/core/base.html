@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Wastex — Leftover Food Waste Management{% endblock %}</title>
+<meta name="description" content="Wastex collects leftover food from restaurants, hotels, hostels and events and routes it to donation, composting and biogas — efficient waste management for a better planet.">
+<link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Tailwind is used for utility + 3D helper classes only; its preflight is
+  // disabled so the existing design system in style.css stays in control.
+  tailwind.config = { corePlugins: { preflight: false },
+    theme: { extend: { colors: { wxgreen: '#79b928', wxdark: '#12291c' } } } };
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap nav">
+  <a class="logo" href="{% url 'home' %}"><span class="mark">♻️</span><span class="word">Was<em>tex</em></span></a>
+  <button class="burger" aria-label="Menu">☰</button>
+  <nav>
+    <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+    <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About Us</a>
+    <a href="{% url 'services' %}" class="{% if 'service' in request.resolver_match.url_name %}active{% endif %}">Services</a>
+    <a href="{% url 'listings' %}" class="{% if 'listing' in request.resolver_match.url_name %}active{% endif %}">Food Listings</a>
+    <a href="{% url 'projects' %}" class="{% if 'project' in request.resolver_match.url_name %}active{% endif %}">Projects</a>
+    <a href="{% url 'blog' %}" class="{% if 'blog' in request.resolver_match.url_name %}active{% endif %}">News</a>
+    <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
+  </nav>
+  <div class="actions">
+    <form class="searchbar" action="{% url 'search' %}" method="get">
+      <input type="search" name="q" placeholder="Search…" value="{{ q|default:'' }}">
+      <button type="submit" aria-label="Search">🔍</button>
+    </form>
+    <a class="btn small" href="{% url 'book_pickup' %}">Book Pickup</a>
+    {% if user.is_authenticated %}
+      <a class="btn small outline" href="{% url 'my_pickups' %}">My Pickups</a>
+      <form method="post" action="{% url 'logout' %}" style="display:inline">{% csrf_token %}<button class="btn small outline" type="submit">Logout</button></form>
+    {% else %}
+      <a class="btn small outline" href="{% url 'login' %}">Login</a>
+    {% endif %}
+  </div>
+</div></header>
+
+{% if messages %}<ul class="messages">{% for m in messages %}<li class="{{ m.tags }}">{{ m }}</li>{% endfor %}</ul>{% endif %}
+
+<main>{% block content %}{% endblock %}</main>
+
+<footer><div class="wrap">
+  <div class="foot-grid">
+    <div>
+      <a class="logo" href="{% url 'home' %}" style="color:#fff"><span class="mark">♻️</span><span class="word">Was<em>tex</em></span></a>
+      <p style="margin-top:1rem">Efficient leftover food waste management — we collect surplus food and kitchen waste and route it to donation, composting and biogas, never landfill first.</p>
+    </div>
+    <div><h4>Quick Links</h4><ul>
+      <li><a href="{% url 'about' %}">About Us</a></li>
+      <li><a href="{% url 'services' %}">Services</a></li>
+      <li><a href="{% url 'projects' %}">Projects</a></li>
+      <li><a href="{% url 'pricing' %}">Pricing</a></li>
+      <li><a href="{% url 'faq' %}">FAQ</a></li>
+    </ul></div>
+    <div><h4>Services</h4><ul>
+      <li><a href="{% url 'book_pickup' %}">Book a Pickup</a></li>
+      <li><a href="{% url 'listings' %}">Live Food Listings</a></li>
+      <li><a href="{% url 'add_listing' %}">Donate Leftover Food</a></li>
+      <li><a href="{% url 'contact' %}">Contact Us</a></li>
+      <li><a href="/admin/">Admin</a></li>
+    </ul></div>
+    <div><h4>Stay in the loop</h4>
+      <p>Get one monthly email on food waste wins and tips. No spam.</p>
+      <form class="news-box" method="post" action="{% url 'newsletter' %}">{% csrf_token %}
+        <input type="email" name="email" required placeholder="Your email address">
+        <button type="submit">Join</button>
+      </form>
+      <p style="margin-top:1rem">✉️ {{ site_email }}<br>🕖 Mon–Sat, 7 AM – 9 PM</p>
+    </div>
+  </div>
+  <div class="foot-bottom">© {% now "Y" %} Wastex — Waste Disposal &amp; Recycling. Leftover food handled with care.</div>
+</div></footer>
+<script src="{% static 'core/js/main.js' %}"></script>
+</body>
+</html>

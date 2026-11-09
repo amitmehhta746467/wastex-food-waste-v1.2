@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% block title %}Donate Leftover Food — Wastex{% endblock %}
+{% block content %}
+<div class="page-head"><div class="wrap"><h1>Donate Leftover Food</h1><p>List surplus food in a minute — nearby NGOs and kitchens can claim it instantly</p></div></div>
+<section><div class="wrap">
+  <form class="form-card" method="post">{% csrf_token %}
+    <div class="form-grid">{% include "core/_form.html" %}</div>
+    <button class="btn" type="submit" style="margin-top:1.4rem">List This Food →</button>
+    <p class="helptext" style="margin-top:.8rem">Only list food that is still within its safe window: cooked food within 2 hours at room temperature, or kept hot (&gt;60°C) / chilled (&lt;5°C).</p>
+  </form>
+</div></section>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}{{ service.title }} — Wastex{% endblock %}
+{% block content %}
+<div class="page-head"><div class="wrap"><h1>{{ service.title }}</h1><p>Home · Services · {{ service.title }}</p></div></div>
+<section><div class="wrap about-grid">
+  <div class="reveal"><img src="{% static 'core/img/' %}{{ service.image }}" alt="{{ service.title }}" style="border-radius:24px;height:440px;width:100%;object-fit:cover"></div>
+  <div class="reveal">
+    <span class="pill">{{ service.icon }} Service</span>
+    <h2>{{ service.title }}</h2>
+    <p class="lead">{{ service.description }}</p>
+    <div class="about-point"><span class="ic">✓</span><div><b>What's included</b>
+      <ul style="margin:.4rem 0 0 1.1rem;color:var(--muted)">
+        {% for f in service.feature_list %}<li>{{ f }}</li>{% endfor %}
+      </ul></div></div>
+    <p style="margin-bottom:1.2rem"><b>Price:</b> {{ service.price_note }}</p>
+    <a class="btn" href="{% url 'book_pickup' %}">Book This Service →</a>
+    <a class="btn outline" href="{% url 'services' %}">All Services</a>
+  </div>
+</div></section>
+<section style="padding-top:0"><div class="wrap">
+  <h2>More services</h2>
+  <div class="cards">{% for s in others %}{% include "core/_service_card.html" %}{% endfor %}</div>
+</div></section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+{% block title %}Contact — Wastex{% include "core/_standard.html" %}
+{% endblock %}
+{% block content %}
+<div class="page-head"><div class="wrap"><h1>Contact Us</h1><p>Home · Contact</p></div></div>
+<section><div class="wrap about-grid">
+  <div class="reveal">
+    <span class="pill">● Get in Touch</span><h2>We reply within one working day</h2>
+    <div class="about-point"><span class="ic">🕖</span><div><b>Mon–Sat, 7 AM – 9 PM</b><p style="color:var(--muted)">Pickup requests are confirmed within 30 minutes in working hours</p></div></div>
+    <div class="about-point"><span class="ic">✉️</span><div><b>{{ site_email }}</b><p style="color:var(--muted)">For partnerships and press</p></div></div>
+    <div class="about-point"><span class="ic">📍</span><div><b>{{ site_address }}</b><p style="color:var(--muted)">Visit by appointment</p></div></div>
+  </div>
+  <form class="form-card reveal" method="post" style="margin:0">{% csrf_token %}
+    <div class="form-grid">{% include "core/_form.html" %}</div>
+    <button class="btn" type="submit" style="margin-top:1.4rem">Send Message →</button>
+  </form>
+</div></section>
+{% endblock %}

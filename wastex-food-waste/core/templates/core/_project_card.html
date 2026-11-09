@@ -1,0 +1,11 @@
+{% load static %}
+<article class="card reveal card-3d" data-tilt>
+  <div class="thumb"><img src="{% static 'core/img/' %}{{ p.image }}" alt="{{ p.title }}"></div>
+  <div class="body">
+    <span class="meta">{{ p.category }} · {{ p.location }}</span>
+    <h3>{{ p.title }}</h3>
+    <p>{{ p.summary }}</p>
+    <p style="flex:none">⚖️ <b>{{ p.kg_diverted }} kg</b> diverted{% if p.meals_served %} · 🍽️ <b>{{ p.meals_served }}</b> meals{% endif %}</p>
+    <a class="more" href="{% url 'project_detail' p.slug %}">View Project →</a>
+  </div>
+</article>

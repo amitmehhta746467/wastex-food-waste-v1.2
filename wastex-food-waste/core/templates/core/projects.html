@@ -1,0 +1,25 @@
+{% extends "core/base.html" %}
+{% block title %}Projects — Wastex
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● Results</span><h2>Project results at a glance</h2>
+  <p class="lead" style="margin-bottom:1.2rem">Every project is weighed and counted. These are the recorded results for the projects above.</p>
+  <div class="table-wrap reveal"><table>
+    <tr><th>Project</th><th>Location</th><th>Category</th><th>Diverted</th><th>Meals served</th><th>Completed</th></tr>
+    {% for p in projects %}<tr><td><b>{{ p.title }}</b></td><td>{{ p.location }}</td><td>{{ p.category }}</td><td>{{ p.kg_diverted }} kg</td><td>{% if p.meals_served %}{{ p.meals_served }}{% else %}—{% endif %}</td><td>{{ p.completed_on|date:"d M Y" }}</td></tr>{% endfor %}
+  </table></div>
+  <div class="cta-band reveal" style="margin-top:2.4rem">
+    <h2>Want results like these<br>for your venue or event?</h2>
+    <a class="btn light" href="{% url 'contact' %}">Start a Project →</a>
+  </div>
+</div></section>
+
+{% include "core/_standard.html" %}
+{% endblock %}
+{% block content %}
+<div class="page-head"><div class="wrap"><h1>Our Projects</h1><p>Home · Projects — real food rescue work, with real numbers</p></div></div>
+<section><div class="wrap">
+  <div class="cards" style="margin-top:0">
+    {% for p in projects %}{% include "core/_project_card.html" %}{% endfor %}
+  </div>
+</div></section>
+{% endblock %}

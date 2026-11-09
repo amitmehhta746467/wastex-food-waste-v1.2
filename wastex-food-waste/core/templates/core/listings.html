@@ -1,0 +1,55 @@
+{% extends "core/base.html" %}
+{% block title %}Live Food Listings — Wastex
+<section style="padding-top:0"><div class="wrap">
+  <span class="pill">● Before You List</span><h2>Donor checklist — 3 quick checks</h2>
+  <div class="why-grid">
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">⏱️</span><h3>Still in the safe window?</h3><p>Cooked food within 2 hours at room temperature, or kept hot above 60°C / chilled below 5°C. If not, book a compost pickup instead.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">📦</span><h3>Sealed &amp; labelled?</h3><p>Pack in clean, sealed containers and note the dish name and cooking time — it helps kitchens plan serving.</p></div>
+    <div class="why-card reveal card-3d" data-tilt><span class="ic">⚖️</span><h3>Quantity roughly right?</h3><p>An honest estimate in kg and servings means the right-sized NGO claims it — no wasted trips, no wasted food.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap about-grid">
+  <div class="reveal"><span class="pill">● For NGOs &amp; Kitchens</span>
+    <h2>Claiming food for your kitchen</h2>
+    <p class="lead">Verified NGOs, shelters and community kitchens claim listings free of charge. Add your organisation name when you claim, then collect before the pickup-by time shown on the listing — the donor's contact number is shared with you the moment your claim succeeds.</p></div>
+  <div class="reveal">
+    <div class="about-point"><span class="ic">✓</span><div><b>No fees, ever</b><p style="color:var(--muted);font-size:.94rem">Claiming and collecting donated food is always free for registered charities.</p></div></div>
+    <div class="about-point"><span class="ic">🌡️</span><div><b>Checked at handover</b><p style="color:var(--muted);font-size:.94rem">Donors follow the checklist above; check temperature on arrival and compost anything doubtful.</p></div></div>
+    <a class="btn" href="{% url 'add_listing' %}">Donate Instead →</a>
+  </div>
+</div></section>
+
+{% include "core/_standard.html" %}
+{% endblock %}
+{% block content %}
+<div class="page-head"><div class="wrap"><h1>Live Food Listings</h1><p>Surplus food available right now — claim it, collect it, serve it</p></div></div>
+<section><div class="wrap">
+  <div class="filters">
+    <a href="{% url 'listings' %}" class="{% if not status %}on{% endif %}">All</a>
+    <a href="?status=available" class="{% if status == 'available' %}on{% endif %}">Available</a>
+    <a href="?status=claimed" class="{% if status == 'claimed' %}on{% endif %}">Claimed</a>
+    <a href="?status=collected" class="{% if status == 'collected' %}on{% endif %}">Collected</a>
+    <form method="get"><input type="search" name="q" value="{{ q }}" placeholder="Search food or place…"><button class="btn small" type="submit">Search</button></form>
+    <a class="btn small" href="{% url 'add_listing' %}" style="margin-left:auto">+ Donate Leftover Food</a>
+  </div>
+  <div class="cards">
+    {% for l in listings %}
+    <article class="card listing-card reveal"><div class="body">
+      <span class="meta">{{ l.get_org_type_display }} · {{ l.location }}</span>
+      <h3>{{ l.food_type }}</h3>
+      <p>🏢 {{ l.donor_name }}<br>⚖️ {{ l.quantity_kg }} kg · 🍽️ ~{{ l.servings }} servings<br>⏰ Collect by {{ l.pickup_by|date:"d M, g:i A" }}
+      {% if l.notes %}<br>📝 {{ l.notes }}{% endif %}
+      {% if l.claimed_by %}<br>🤝 Claimed by {{ l.claimed_by }}{% endif %}</p>
+      <span class="tag {{ l.status }}">{{ l.get_status_display }}</span>
+      {% if l.status == 'available' %}
+      <form class="claim-form" method="post" action="{% url 'claim_listing' l.pk %}">{% csrf_token %}
+        <input name="claimed_by" required placeholder="Your NGO / kitchen name">
+        <button class="btn small" type="submit">Claim</button>
+      </form>
+      {% endif %}
+    </div></article>
+    {% empty %}<p class="lead">No listings match. Try another search — or <a href="{% url 'add_listing' %}"><b>add a donation</b></a>.</p>{% endfor %}
+  </div>
+</div></section>
+{% endblock %}
